@@ -19,7 +19,7 @@ import java.util.HashMap;
  * fully initialized and injected with all dependencies.
  */
 //@RefreshScope
-@Configuration
+//@Configuration
 @Data
 public class DbConfig {
 

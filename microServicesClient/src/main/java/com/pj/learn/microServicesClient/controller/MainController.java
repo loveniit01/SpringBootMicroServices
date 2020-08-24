@@ -15,7 +15,7 @@ public class MainController {
 @GetMapping("/")
     public String getCourseAppHome()
     {
-        return "Course App Home";
+        return "User App Home";
     }
 
     @GetMapping("/users")
