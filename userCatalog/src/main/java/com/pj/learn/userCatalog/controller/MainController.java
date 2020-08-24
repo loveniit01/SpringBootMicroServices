@@ -29,7 +29,7 @@ public class MainController {
 
     @GetMapping("/users")
     @HystrixCommand(fallbackMethod = "displayErrorPage")
-    public String getCourses()
+    public String getUser()
     {
         String userDetails ="";
         RestTemplate rt =  new RestTemplate();
@@ -38,6 +38,19 @@ public class MainController {
         String allUsersURL = userAppUrl+"/users";
           userDetails  = rt.getForObject(allUsersURL, String.class);
         return "Our Users Are : "+userDetails;
+    }
+
+    @GetMapping("/course")
+    @HystrixCommand(fallbackMethod = "displayErrorPage")
+    public String getCourse()
+    {
+        String courseDetails ="";
+        RestTemplate rt =  new RestTemplate();
+        InstanceInfo info = eurekaClient.getNextServerFromEureka("eureka-client-two", false);
+        String  userAppUrl = info.getHomePageUrl();
+        String allUsersURL = userAppUrl+"/course";
+        courseDetails  = rt.getForObject(allUsersURL, String.class);
+        return "Our courses Are : "+courseDetails;
     }
 
     public String displayHomePage()
